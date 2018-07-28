@@ -1,0 +1,160 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject
+vdatapath3
+Z1 !s110 1532738551
+!i10b 1
+!s100 6J:HZmKGoEX;Tdo?:b1M70
+I^JOmo0=C7K=Zbl=e`?bk;0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1532738542
+Z4 8DinoMove.v
+Z5 FDinoMove.v
+L0 197
+Z6 OP;L;10.4a;61
+r1
+!s85 0
+31
+Z7 !s108 1532738551.000000
+Z8 !s107 DinoMove.v|
+Z9 !s90 -reportprogress|300|-timescale|1ns/1ns|DinoMove.v|
+!s101 -O0
+!i113 1
+Z10 o-timescale 1ns/1ns -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact -O0
+vdinoProject
+R1
+!i10b 1
+!s100 o<;O1iH;YgkTm7S1P86Wj0
+I?:m6P3POoGmIdCbQAU<a53
+R2
+R0
+R3
+R4
+R5
+L0 1
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!s101 -O0
+!i113 1
+R10
+ndino@project
+vfpga_top
+Z11 !s110 1532310518
+!i10b 1
+!s100 OJ3zFO=MAClbDG=`FcJ@=3
+IGi?SjHlD[B:HLTeM<_GL52
+R2
+R0
+Z12 w1532310209
+Z13 8LFSR.v
+Z14 FLFSR.v
+L0 1
+R6
+r1
+!s85 0
+31
+Z15 !s108 1532310518.000000
+Z16 !s107 LFSR.v|
+Z17 !s90 -reportprogress|300|-timescale|1ns/1ns|LFSR.v|
+!s101 -O0
+!i113 1
+R10
+vFSM3
+R1
+!i10b 1
+!s100 RdUe]zF8kNeM9RL8E5mPg0
+I2V49ZYl[>``4?Ybi9h@Yz3
+R2
+R0
+R3
+R4
+R5
+L0 474
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!s101 -O0
+!i113 1
+R10
+n@f@s@m3
+vhex_decoder
+R11
+!i10b 1
+!s100 j0LBeLI0HWnA9[8d6TkU<1
+IalP7WhHb]ncNV?8?i8`Mm1
+R2
+R0
+R12
+R13
+R14
+L0 38
+R6
+r1
+!s85 0
+31
+R15
+R16
+R17
+!s101 -O0
+!i113 1
+R10
+vLFSR
+R11
+!i10b 1
+!s100 [8ejAMmYILbFdmcc`c2X;0
+I<HC3M;ognaV;i=_^3SO5k1
+R2
+R0
+R12
+R13
+R14
+L0 13
+R6
+r1
+!s85 0
+31
+R15
+R16
+R17
+!s101 -O0
+!i113 1
+R10
+n@l@f@s@r
+vtest
+R1
+!i10b 1
+!s100 @ZNSanDcjiFG5e`aQh1c13
+I]m[=8a?5_RhclL]5HUmID1
+R2
+R0
+R3
+R4
+R5
+L0 122
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!s101 -O0
+!i113 1
+R10

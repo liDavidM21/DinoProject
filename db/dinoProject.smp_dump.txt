@@ -1,0 +1,8 @@
+
+State Machine - |dinoProject|FSM3:fsm3|current_state
+Name current_state.ERASE current_state.STAY current_state.DRAW current_state.BEGIN current_state.NEW_XY 
+current_state.BEGIN 0 0 0 0 0 
+current_state.DRAW 0 0 1 1 0 
+current_state.STAY 0 1 0 1 0 
+current_state.ERASE 1 0 0 1 0 
+current_state.NEW_XY 0 0 0 1 1 
