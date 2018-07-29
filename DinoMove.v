@@ -121,81 +121,6 @@ module dinoProject
 		       );
 endmodule
 
-module test(clk, KEY, SW);
-	input clk;
-	input [3:0] KEY;
-	input [9:0] SW;
-	
-	wire resetn;
-	assign resetn = KEY[0];
-	
-	// Create the colour, x, y and writeEn wires that are inputs to the controller.
-	wire [2:0] colour;
-	wire [7:0] x;
-	wire [6:0] y;
-	wire [3:0] q;
-	wire [3:0] tree_q;
-	wire [3:0] current_state;
-	wire writeEn;
-	wire ld_x, ld_y, draw, draw_ground;
-	wire en_xy, en_delay, erase_colour, finish_draw, finish_erase, right, down, is_move, finish_tree_draw, finish_tree_erase, en_xy_tree, draw_tree, en_tree_delay;
-	
-	datapath3 d3(
-	             .colour(SW[9:7]),
-		         .resetn(resetn),
-		         .clock(clk),
-				 .draw(draw),
-                 .draw_ground(draw_ground),				 
-		         .en_xy(en_xy),
-		         .en_delay(en_delay),
-				 .right(right),
-				 .down(down),
-		         .erase_colour(erase_colour),
-		         
-		         .x(x),
-		         .y(y),
-		         .colour_out(colour),
-				 .finish_ground(finish_ground),
-		         .finish_draw(finish_draw),
-		         .finish_erase(finish_erase),
-				 .is_move(is_move),
-				 .q(q),
-				 .finish_tree_draw(finish_tree_draw),
-				 .finish_tree_erase(finish_tree_erase),
-				 .en_xy_tree(en_xy_tree),
-				 .draw_tree(draw_tree),
-				 .en_tree_delay(en_tree_delay),
-				 .tree_q(tree_q)
-	             );
-	 FSM3 fsm3(
-		       .clock(clk),
-		       .resetn(resetn),
-		       .go(~KEY[1]),
-			   .jump(KEY[2]),
-			   .finish_ground(finish_ground),
-		       .finish_draw(finish_draw),
-		       .finish_erase(finish_erase),
-			   .x(x),
-			   .y(y),
-		
-		       .en_xy(en_xy),
-		       .en_delay(en_delay),
-			   .right(right),
-			   .down(down),
-		       .erase_colour(erase_colour),
-			   .draw_ground(draw_ground),
-		       .draw(draw),
-		       .plot(writeEn),
-			   .is_move(is_move),
-			   .current_state(current_state),
-			   .finish_tree_draw(finish_tree_draw),
-			   .finish_tree_erase(finish_tree_erase),
-			   .en_xy_tree(en_xy_tree),
-			   .draw_tree(draw_tree),
-			   .en_tree_delay(en_tree_delay)
-		       );
-endmodule
-
 module datapath3(colour, 
 				resetn, 
 				clock, 
@@ -218,7 +143,6 @@ module datapath3(colour,
 				finish_tree_draw,
 				is_move, 
 				q,
-				tree_q,
 				finish_delay,
 				is_over);
 				
@@ -226,8 +150,8 @@ module datapath3(colour,
 	input en_xy, en_delay, en_erase, draw, right, down, is_move, draw_ground, en_xy_tree, draw_tree, set_over;
 	input [2:0] colour;
 	
-	output finish_erase;
-	output finish_ground;
+	output reg finish_erase;
+	output reg finish_ground;
 	output reg finish_draw;
 	output reg finish_tree_draw;
 	output finish_delay;
@@ -245,13 +169,17 @@ module datapath3(colour,
 	reg [6:0] erase_counter_y;
 
 	output reg [3:0] q;
-	output reg [5:0] tree_q;
+	reg [1:0] tree_x_counter;
+	reg [6:0] tree_y_counter;
 	reg [3:0]  frame;
 	reg [19:0] delay;
 	reg [19:0] tree_delay;
 	reg [3:0] tree_frame;
 	wire en_frame;
 	wire en_tree_frame;
+	wire [7:0] LFSR_out;
+	
+	LFSR l0(.clk(clock), .resetn(resetn), .out(LFSR_out));
 	
 	always @(*)
 	begin
@@ -276,22 +204,34 @@ module datapath3(colour,
 		        ground_x <= 8'd0;
 				ground_y <= 7'd115;
 		    end
-		if(ground_y == 7'd119)
-			ground_y <= 7'd115;
+		if(finish_delay)
+			begin
+				ground_y <= 7'd115;
+				ground_x <= 8'd0;
+			end
+		if(ground_y == 7'd120)
+			begin
+				ground_y <= 7'd115;
+				finish_ground <= 1'd1;
+			end	
 		else
 		    begin
 			    if(draw_ground)
 				    begin
-			            ground_x <= ground_x + 1;
+			            
 				        if (ground_x >= 8'd159)
 				            begin
 					            ground_x <= 0;
 						        ground_y <= ground_y + 1;
 					        end
+						else
+							begin
+								ground_x <= ground_x + 1;
+								finish_ground <= 1'd0;
+							end
 			        end
 			end
 	end
-	assign finish_ground = (ground_y == 7'd119)? 1: 0;
 	
 	always @(posedge clock)
 	begin
@@ -300,22 +240,33 @@ module datapath3(colour,
 				erase_counter_x <= 8'd0;
 				erase_counter_y <= 7'd0;
 			end
-		if(erase_counter_y == 7'd119)
-			erase_counter_y <= 7'd0;
+		if(finish_delay)
+			begin
+				erase_counter_y <= 7'd0;
+				erase_counter_x <= 8'd0;
+			end
+		if(erase_counter_y == 7'd120)
+			begin
+				erase_counter_y <= 7'd0;
+				finish_erase <= 1'd1;
+			end
 		else
 			begin
 				if(en_erase)
 					begin
-						erase_counter_x <= erase_counter_x + 1;
 						if(erase_counter_x >= 8'd159)
 							begin
 								erase_counter_x <= 0;
 								erase_counter_y <= erase_counter_y + 1'd1;
 							end
+						else
+							begin
+								erase_counter_x <= erase_counter_x + 1;
+								finish_erase <= 1'd0;
+							end
 					end
 			end
 	end
-	assign finish_erase = (erase_counter_y == 7'd119) ? 1 : 0;
 	
 	always @(posedge clock)
 	begin: load_register
@@ -380,13 +331,13 @@ module datapath3(colour,
 	always @(posedge clock)
 	begin: x_counter
 		if (!resetn || set_over)
-			x_original <= 8'd40;
+			x_original <= 8'd10;
 	end
 	
 	always @(posedge clock)
 	begin: y_counter
 	    if (!resetn || set_over)
-		    y_original <= 7'd100;
+		    y_original <= 7'd110;
 		else if (en_xy)
 		begin
 			if (is_move)
@@ -414,7 +365,9 @@ module datapath3(colour,
 	always @(posedge clock)
 	begin
 		if(!resetn || set_over)
-			tree_y <= 7'd100;
+			tree_y <= {2'b00, LFSR_out};
+		else if(tree_x == 8'd0)
+			tree_y <= {2'b00, LFSR_out};
 	end
 	
 	
@@ -423,46 +376,53 @@ module datapath3(colour,
 	begin
 		if(!resetn || set_over)
 			begin
-				tree_q <= 6'b0000;
-				finish_tree_draw <= 1'b0;
+				tree_x_counter <= 2'd0;
+				tree_y_counter <= 7'd0;
 			end
-		if(finish_delay)
-			tree_q <= 6'b0000;
-		else if(draw_tree)
+		if(finish_delay) begin
+			tree_y_counter <= 7'd0;
+			tree_x_counter <= 2'd0;
+		end
+		if(tree_y_counter + tree_y == 7'd115)
 			begin
-				if (tree_q == 6'b111111)
-					begin
-						tree_q <= 0;
-						finish_tree_draw <= 1'b1;
-					end	
-				else begin
-					tree_q <= tree_q + 1'b1;
-					finish_tree_draw <= 1'b0;
+				tree_y_counter <= 7'd0;
+				finish_tree_draw <= 1'd1;
+			end
+		else if(draw_tree)
+				begin
+					if(tree_x_counter >= 2'd3)
+						begin
+							tree_x_counter <= 0;
+							tree_y_counter <= tree_y_counter + 1'd1;
+						end
+					else
+						begin
+							tree_x_counter <= tree_x_counter + 1;
+							finish_tree_draw <= 1'd0;
+						end	
 				end
-			end	
 	end
 	
 	always @(posedge clock)
 	begin: counter
 		if (!resetn || set_over) begin
 			q <= 4'b0000;
-			finish_draw <= 4'b0000;
+			finish_draw <= 1'd0;
 			end
 		if(finish_delay) begin
 			q <= 4'b0000;
 			end
+		if (q == 4'b1111) begin
+			q <= 0;
+			finish_draw <= 1'b1;
+			end
 		else if (draw)
 			begin
-				if (q == 4'b1111) begin
-					q <= 0;
-					finish_draw <= 1'b1;
-					end
-				else begin
-					q <= q + 1'b1;
-					finish_draw <= 1'b0;
-					end
+				q <= q + 1'b1;
+				finish_draw <= 1'b0;
 			end
 	end
+
 	
 	always @(*)
 	begin
@@ -482,8 +442,8 @@ module datapath3(colour,
 			end
 		else if(draw_tree)
 			begin
-				x = tree_x + tree_q[1:0];
-				y = tree_y + tree_q[5:2];
+				x = tree_x + tree_x_counter;
+				y = tree_y + tree_y_counter;
 			end
 		else if(en_erase)
 			begin
@@ -540,7 +500,7 @@ module FSM3(clock,
 	
 	always @(posedge clock)
 	begin
-		if(!resetn)
+		if(!resetn || current_state == BEGIN)
 			is_move <= 0;
 		if(!jump)
 			is_move <= 1;
@@ -645,4 +605,31 @@ always@(posedge clock)
         else
             current_state <= next_state;
     end // state_FFS
+endmodule
+
+module LFSR(clk, resetn, out);
+	input clk;
+	input resetn;
+	output [4:0] out;
+	
+	wire xor_out;
+	reg [12:0] random_reg;
+	reg [3:0] current_reg;
+	assign xor_out = random_reg[12] ^ random_reg[3] ^ random_reg[2] ^ random_reg[0];
+	
+	always @(posedge clk)
+	begin
+		if(!resetn)
+			begin
+				random_reg <= 8'd7;
+				current_reg <= 3'd0;
+			end
+		else
+			begin
+				random_reg <= {random_reg[11:0], xor_out};
+			end
+	end
+	
+	assign out = random_reg[4:0];
+	
 endmodule

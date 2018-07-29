@@ -1,12 +1,12 @@
-Fitter Status : Successful - Sat Jul 28 19:20:33 2018
+Fitter Status : Successful - Sat Jul 28 21:26:27 2018
 Quartus Prime Version : 18.0.0 Build 614 04/24/2018 SJ Lite Edition
 Revision Name : dinoProject
 Top-level Entity Name : dinoProject
 Family : Cyclone V
 Device : 5CSEMA5F31C6
 Timing Models : Final
-Logic utilization (in ALMs) : 161 / 32,070 ( < 1 % )
-Total registers : 125
+Logic utilization (in ALMs) : 184 / 32,070 ( < 1 % )
+Total registers : 147
 Total pins : 50 / 457 ( 11 % )
 Total virtual pins : 0
 Total block memory bits : 57,600 / 4,065,280 ( 1 % )
