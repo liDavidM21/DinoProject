@@ -218,7 +218,6 @@ module datapath3(colour,
 		    begin
 			    if(draw_ground)
 				    begin
-			            
 				        if (ground_x >= 8'd159)
 				            begin
 					            ground_x <= 0;
@@ -365,9 +364,9 @@ module datapath3(colour,
 	always @(posedge clock)
 	begin
 		if(!resetn || set_over)
-			tree_y <= {2'b00, LFSR_out};
+			tree_y <= {LFSR_out, 2'b00};
 		else if(tree_x == 8'd0)
-			tree_y <= {2'b00, LFSR_out};
+			tree_y <= {LFSR_out, 2'b00};
 	end
 	
 	
@@ -383,17 +382,21 @@ module datapath3(colour,
 			tree_y_counter <= 7'd0;
 			tree_x_counter <= 2'd0;
 		end
-		if(tree_y_counter + tree_y == 7'd115)
-			begin
-				tree_y_counter <= 7'd0;
-				finish_tree_draw <= 1'd1;
-			end
 		else if(draw_tree)
 				begin
-					if(tree_x_counter >= 2'd3)
+					if(tree_x_counter == 2'd3)
 						begin
-							tree_x_counter <= 0;
-							tree_y_counter <= tree_y_counter + 1'd1;
+						if(tree_y_counter + tree_y == 7'd114)
+						    begin
+				                tree_y_counter <= 7'd0;
+				                finish_tree_draw <= 1'd1;
+			                end
+						else
+						    begin
+							    tree_x_counter <= 0;
+							    tree_y_counter <= tree_y_counter + 1'd1;
+								finish_tree_draw <= 1'd0;
+							end
 						end
 					else
 						begin
