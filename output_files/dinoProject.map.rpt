@@ -1,5 +1,5 @@
 Analysis & Synthesis report for dinoProject
-Sun Jul 29 17:08:56 2018
+Mon Jul 30 17:22:16 2018
 Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
 
 
@@ -59,13 +59,13 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sun Jul 29 17:08:56 2018       ;
+; Analysis & Synthesis Status     ; Successful - Mon Jul 30 17:22:16 2018       ;
 ; Quartus Prime Version           ; 18.0.0 Build 614 04/24/2018 SJ Lite Edition ;
 ; Revision Name                   ; dinoProject                                 ;
 ; Top-level Entity Name           ; dinoProject                                 ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 142                                         ;
+; Total registers                 ; 145                                         ;
 ; Total pins                      ; 50                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 57,600                                      ;
@@ -179,7 +179,8 @@ refer to the applicable agreement for further details.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-4         ;   0.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processors 3-4         ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -188,11 +189,11 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------------+---------+
 ; File Name with User-Entered Path                              ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                                    ; Library ;
 +---------------------------------------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------------+---------+
+; DinoMove.v                                                    ; yes             ; User Verilog HDL File        ; C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v                                     ;         ;
 ; ../Lab7/part2/lab6-part2/vga_adapter/vga_pll.v                ; yes             ; User Wizard-Generated File   ; C:/Users/Wenshuo/Desktop/UofT/CSC258/Lab7/part2/lab6-part2/vga_adapter/vga_pll.v                ;         ;
 ; ../Lab7/part2/lab6-part2/vga_adapter/vga_controller.v         ; yes             ; User Verilog HDL File        ; C:/Users/Wenshuo/Desktop/UofT/CSC258/Lab7/part2/lab6-part2/vga_adapter/vga_controller.v         ;         ;
 ; ../Lab7/part2/lab6-part2/vga_adapter/vga_address_translator.v ; yes             ; User Verilog HDL File        ; C:/Users/Wenshuo/Desktop/UofT/CSC258/Lab7/part2/lab6-part2/vga_adapter/vga_address_translator.v ;         ;
 ; ../Lab7/part2/lab6-part2/vga_adapter/vga_adapter.v            ; yes             ; User Verilog HDL File        ; C:/Users/Wenshuo/Desktop/UofT/CSC258/Lab7/part2/lab6-part2/vga_adapter/vga_adapter.v            ;         ;
-; DinoMove.v                                                    ; yes             ; User Verilog HDL File        ; C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v                                     ;         ;
 ; altsyncram.tdf                                                ; yes             ; Megafunction                 ; c:/intelfpga_lite/18.0/quartus/libraries/megafunctions/altsyncram.tdf                           ;         ;
 ; stratix_ram_block.inc                                         ; yes             ; Megafunction                 ; c:/intelfpga_lite/18.0/quartus/libraries/megafunctions/stratix_ram_block.inc                    ;         ;
 ; lpm_mux.inc                                                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/18.0/quartus/libraries/megafunctions/lpm_mux.inc                              ;         ;
@@ -219,16 +220,16 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimate of Logic utilization (ALMs needed) ; 196            ;
+; Estimate of Logic utilization (ALMs needed) ; 251            ;
 ;                                             ;                ;
-; Combinational ALUT usage for logic          ; 315            ;
-;     -- 7 input functions                    ; 1              ;
-;     -- 6 input functions                    ; 72             ;
-;     -- 5 input functions                    ; 31             ;
-;     -- 4 input functions                    ; 25             ;
-;     -- <=3 input functions                  ; 186            ;
+; Combinational ALUT usage for logic          ; 401            ;
+;     -- 7 input functions                    ; 3              ;
+;     -- 6 input functions                    ; 95             ;
+;     -- 5 input functions                    ; 53             ;
+;     -- 4 input functions                    ; 26             ;
+;     -- <=3 input functions                  ; 224            ;
 ;                                             ;                ;
-; Dedicated logic registers                   ; 142            ;
+; Dedicated logic registers                   ; 145            ;
 ;                                             ;                ;
 ; I/O pins                                    ; 50             ;
 ; Total MLAB memory bits                      ; 0              ;
@@ -240,9 +241,9 @@ refer to the applicable agreement for further details.
 ;     -- PLLs                                 ; 1              ;
 ;                                             ;                ;
 ; Maximum fan-out node                        ; CLOCK_50~input ;
-; Maximum fan-out                             ; 122            ;
-; Total fan-out                               ; 1958           ;
-; Average fan-out                             ; 3.45           ;
+; Maximum fan-out                             ; 125            ;
+; Total fan-out                               ; 2318           ;
+; Average fan-out                             ; 3.53           ;
 +---------------------------------------------+----------------+
 
 
@@ -251,10 +252,10 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------------------+------------------------+--------------+
 ; Compilation Hierarchy Node                              ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                         ; Entity Name            ; Library Name ;
 +---------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------------------+------------------------+--------------+
-; |dinoProject                                            ; 315 (1)             ; 142 (0)                   ; 57600             ; 0          ; 50   ; 0            ; |dinoProject                                                                                                ; dinoProject            ; work         ;
+; |dinoProject                                            ; 401 (1)             ; 145 (0)                   ; 57600             ; 0          ; 50   ; 0            ; |dinoProject                                                                                                ; dinoProject            ; work         ;
 ;    |FSM3:fsm3|                                          ; 23 (23)             ; 5 (5)                     ; 0                 ; 0          ; 0    ; 0            ; |dinoProject|FSM3:fsm3                                                                                      ; FSM3                   ; work         ;
-;    |datapath3:d3|                                       ; 228 (225)           ; 107 (94)                  ; 0                 ; 0          ; 0    ; 0            ; |dinoProject|datapath3:d3                                                                                   ; datapath3              ; work         ;
-;       |LFSR:l0|                                         ; 3 (3)               ; 13 (13)                   ; 0                 ; 0          ; 0    ; 0            ; |dinoProject|datapath3:d3|LFSR:l0                                                                           ; LFSR                   ; work         ;
+;    |datapath3:d3|                                       ; 314 (310)           ; 110 (97)                  ; 0                 ; 0          ; 0    ; 0            ; |dinoProject|datapath3:d3                                                                                   ; datapath3              ; work         ;
+;       |LFSR:l0|                                         ; 4 (4)               ; 13 (13)                   ; 0                 ; 0          ; 0    ; 0            ; |dinoProject|datapath3:d3|LFSR:l0                                                                           ; LFSR                   ; work         ;
 ;    |vga_adapter:VGA|                                    ; 63 (2)              ; 30 (0)                    ; 57600             ; 0          ; 0    ; 0            ; |dinoProject|vga_adapter:VGA                                                                                ; vga_adapter            ; work         ;
 ;       |altsyncram:VideoMemory|                          ; 9 (0)               ; 4 (0)                     ; 57600             ; 0          ; 0    ; 0            ; |dinoProject|vga_adapter:VGA|altsyncram:VideoMemory                                                         ; altsyncram             ; work         ;
 ;          |altsyncram_m6m1:auto_generated|               ; 9 (0)               ; 4 (4)                     ; 57600             ; 0          ; 0    ; 0            ; |dinoProject|vga_adapter:VGA|altsyncram:VideoMemory|altsyncram_m6m1:auto_generated                          ; altsyncram_m6m1        ; work         ;
@@ -288,10 +289,10 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; datapath3:d3|x[7]                                   ; datapath3:d3|x[7]    ; yes                    ;
 ; datapath3:d3|x[5]                                   ; datapath3:d3|x[7]    ; yes                    ;
 ; datapath3:d3|x[6]                                   ; datapath3:d3|x[7]    ; yes                    ;
-; datapath3:d3|y[3]                                   ; datapath3:d3|x[7]    ; yes                    ;
 ; datapath3:d3|y[4]                                   ; datapath3:d3|x[7]    ; yes                    ;
-; datapath3:d3|y[5]                                   ; datapath3:d3|x[7]    ; yes                    ;
+; datapath3:d3|y[3]                                   ; datapath3:d3|x[7]    ; yes                    ;
 ; datapath3:d3|y[6]                                   ; datapath3:d3|x[7]    ; yes                    ;
+; datapath3:d3|y[5]                                   ; datapath3:d3|x[7]    ; yes                    ;
 ; datapath3:d3|x[0]                                   ; datapath3:d3|x[7]    ; yes                    ;
 ; datapath3:d3|x[1]                                   ; datapath3:d3|x[7]    ; yes                    ;
 ; datapath3:d3|x[2]                                   ; datapath3:d3|x[7]    ; yes                    ;
@@ -320,9 +321,8 @@ Note: All latches listed above may not be present at the end of synthesis due to
 ; datapath3:d3|x_original[2]             ; Stuck at GND due to stuck port data_in ;
 ; datapath3:d3|x_original[3]             ; Stuck at VCC due to stuck port data_in ;
 ; datapath3:d3|x_original[4..7]          ; Stuck at GND due to stuck port data_in ;
-; datapath3:d3|tree_y[6]                 ; Merged with datapath3:d3|tree_y[5]     ;
-; datapath3:d3|tree_y[5]                 ; Stuck at GND due to stuck port data_in ;
-; Total Number of Removed Registers = 11 ;                                        ;
+; datapath3:d3|tree_y[6]                 ; Stuck at VCC due to stuck port data_in ;
+; Total Number of Removed Registers = 10 ;                                        ;
 +----------------------------------------+----------------------------------------+
 
 
@@ -331,9 +331,9 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 142   ;
+; Total registers                              ; 145   ;
 ; Number of registers using Synchronous Clear  ; 72    ;
-; Number of registers using Synchronous Load   ; 26    ;
+; Number of registers using Synchronous Load   ; 31    ;
 ; Number of registers using Asynchronous Clear ; 20    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 66    ;
@@ -347,25 +347,28 @@ Note: All latches listed above may not be present at the end of synthesis due to
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                     ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------------------------------------+
 ; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |dinoProject|datapath3:d3|tree_x[7]                                                                            ;
-; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |dinoProject|datapath3:d3|tree_x[0]                                                                            ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |dinoProject|vga_adapter:VGA|vga_controller:controller|yCounter[4]                                             ;
-; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |dinoProject|datapath3:d3|y_original[5]                                                                        ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |dinoProject|datapath3:d3|tree_x[3]                                                                            ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |dinoProject|vga_adapter:VGA|vga_controller:controller|yCounter[6]                                             ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |dinoProject|datapath3:d3|y_original[6]                                                                        ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |dinoProject|datapath3:d3|y_original[4]                                                                        ;
-; 4:1                ; 12 bits   ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; Yes        ; |dinoProject|datapath3:d3|delay[5]                                                                             ;
-; 4:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |dinoProject|datapath3:d3|delay[7]                                                                             ;
+; 4:1                ; 12 bits   ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; Yes        ; |dinoProject|datapath3:d3|delay[8]                                                                             ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |dinoProject|datapath3:d3|delay[10]                                                                            ;
 ; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |dinoProject|datapath3:d3|frame[3]                                                                             ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |dinoProject|datapath3:d3|q[0]                                                                                 ;
-; 5:1                ; 7 bits    ; 21 LEs        ; 14 LEs               ; 7 LEs                  ; Yes        ; |dinoProject|datapath3:d3|erase_counter_y[3]                                                                   ;
-; 5:1                ; 5 bits    ; 15 LEs        ; 10 LEs               ; 5 LEs                  ; Yes        ; |dinoProject|datapath3:d3|ground_y[5]                                                                          ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 12 LEs               ; 6 LEs                  ; Yes        ; |dinoProject|datapath3:d3|q[5]                                                                                 ;
+; 5:1                ; 7 bits    ; 21 LEs        ; 14 LEs               ; 7 LEs                  ; Yes        ; |dinoProject|datapath3:d3|erase_counter_y[2]                                                                   ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 10 LEs               ; 5 LEs                  ; Yes        ; |dinoProject|datapath3:d3|ground_y[6]                                                                          ;
 ; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |dinoProject|datapath3:d3|ground_y[3]                                                                          ;
-; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |dinoProject|datapath3:d3|erase_counter_x[1]                                                                   ;
-; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |dinoProject|datapath3:d3|ground_x[0]                                                                          ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |dinoProject|datapath3:d3|erase_counter_x[5]                                                                   ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |dinoProject|datapath3:d3|ground_x[7]                                                                          ;
 ; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |dinoProject|datapath3:d3|tree_x_counter[1]                                                                    ;
-; 5:1                ; 7 bits    ; 21 LEs        ; 14 LEs               ; 7 LEs                  ; Yes        ; |dinoProject|datapath3:d3|tree_y_counter[4]                                                                    ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; Yes        ; |dinoProject|datapath3:d3|colour_out[2]                                                                        ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |dinoProject|vga_adapter:VGA|altsyncram:VideoMemory|altsyncram_m6m1:auto_generated|mux_ifb:mux3|result_node[2] ;
+; 5:1                ; 7 bits    ; 21 LEs        ; 14 LEs               ; 7 LEs                  ; Yes        ; |dinoProject|datapath3:d3|tree_y_counter[1]                                                                    ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; Yes        ; |dinoProject|datapath3:d3|colour_out[1]                                                                        ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; Yes        ; |dinoProject|datapath3:d3|tree_y[5]                                                                            ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; Yes        ; |dinoProject|datapath3:d3|tree_y[4]                                                                            ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |dinoProject|vga_adapter:VGA|altsyncram:VideoMemory|altsyncram_m6m1:auto_generated|mux_ifb:mux3|result_node[1] ;
 ; 4:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |dinoProject|datapath3:d3|x[7]                                                                                 ;
-; 4:1                ; 10 bits   ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |dinoProject|datapath3:d3|x[0]                                                                                 ;
+; 10:1               ; 5 bits    ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; No         ; |dinoProject|datapath3:d3|y[5]                                                                                 ;
+; 23:1               ; 2 bits    ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; No         ; |dinoProject|datapath3:d3|x[0]                                                                                 ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------------------------------------+
 
 
@@ -912,13 +915,14 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------------+--------+----------+----------------------------------------------------------------------------------------------------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "datapath3:d3|LFSR:l0"                                                                                                                                                 ;
-+------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port ; Type   ; Severity ; Details                                                                                                                                                               ;
-+------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; out  ; Output ; Warning  ; Output or bidir port (5 bits) is smaller than the port expression (8 bits) it drives.  The 3 most-significant bit(s) in the port expression will be connected to GND. ;
-+------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "datapath3:d3|LFSR:l0"                                                                                                                                                      ;
++-----------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                                                                                                               ;
++-----------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; out       ; Output ; Warning  ; Output or bidir port (5 bits) is smaller than the port expression (8 bits) it drives.  The 3 most-significant bit(s) in the port expression will be connected to GND. ;
+; out[4..2] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                   ;
++-----------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +-------------------------------------------------------------------------------------------------------------------------------------+
@@ -935,40 +939,45 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 142                         ;
+; arriav_ff             ; 145                         ;
 ;     CLR SCLR          ; 10                          ;
-;     ENA               ; 7                           ;
+;     ENA               ; 2                           ;
 ;     ENA CLR SCLR      ; 10                          ;
 ;     ENA SCLR          ; 31                          ;
-;     ENA SLD           ; 18                          ;
+;     ENA SLD           ; 23                          ;
 ;     SCLR              ; 14                          ;
 ;     SCLR SLD          ; 7                           ;
 ;     SLD               ; 1                           ;
-;     plain             ; 44                          ;
-; arriav_lcell_comb     ; 316                         ;
-;     arith             ; 114                         ;
-;         1 data inputs ; 99                          ;
-;         2 data inputs ; 15                          ;
-;     extend            ; 1                           ;
-;         7 data inputs ; 1                           ;
-;     normal            ; 181                         ;
-;         0 data inputs ; 2                           ;
+;     plain             ; 47                          ;
+; arriav_lcell_comb     ; 402                         ;
+;     arith             ; 153                         ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 130                         ;
 ;         2 data inputs ; 16                          ;
-;         3 data inputs ; 35                          ;
-;         4 data inputs ; 25                          ;
-;         5 data inputs ; 31                          ;
-;         6 data inputs ; 72                          ;
-;     shared            ; 20                          ;
+;         3 data inputs ; 1                           ;
+;         4 data inputs ; 2                           ;
+;         5 data inputs ; 3                           ;
+;     extend            ; 3                           ;
+;         7 data inputs ; 3                           ;
+;     normal            ; 236                         ;
 ;         0 data inputs ; 2                           ;
-;         1 data inputs ; 4                           ;
-;         2 data inputs ; 12                          ;
-;         3 data inputs ; 2                           ;
+;         1 data inputs ; 1                           ;
+;         2 data inputs ; 21                          ;
+;         3 data inputs ; 43                          ;
+;         4 data inputs ; 24                          ;
+;         5 data inputs ; 50                          ;
+;         6 data inputs ; 95                          ;
+;     shared            ; 10                          ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 2                           ;
+;         2 data inputs ; 6                           ;
+;         3 data inputs ; 1                           ;
 ; boundary_port         ; 50                          ;
 ; generic_pll           ; 1                           ;
 ; stratixv_ram_block    ; 9                           ;
 ;                       ;                             ;
-; Max LUT depth         ; 4.00                        ;
-; Average LUT depth     ; 2.41                        ;
+; Max LUT depth         ; 6.00                        ;
+; Average LUT depth     ; 2.88                        ;
 +-----------------------+-----------------------------+
 
 
@@ -977,7 +986,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -987,10 +996,15 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
-    Info: Processing started: Sun Jul 29 17:08:45 2018
+    Info: Processing started: Mon Jul 30 17:22:06 2018
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off dinoProject -c dinoProject
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 4 design units, including 4 entities, in source file dinomove.v
+    Info (12023): Found entity 1: dinoProject File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 1
+    Info (12023): Found entity 2: datapath3 File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 124
+    Info (12023): Found entity 3: FSM3 File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 557
+    Info (12023): Found entity 4: LFSR File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 711
 Info (12021): Found 2 design units, including 2 entities, in source file ground.v
     Info (12023): Found entity 1: part2 File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/Ground.v Line: 3
     Info (12023): Found entity 2: datapath File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/Ground.v Line: 79
@@ -1002,11 +1016,6 @@ Info (12021): Found 1 design units, including 1 entities, in source file /users/
     Info (12023): Found entity 1: vga_address_translator File: C:/Users/Wenshuo/Desktop/UofT/CSC258/Lab7/part2/lab6-part2/vga_adapter/vga_address_translator.v Line: 4
 Info (12021): Found 1 design units, including 1 entities, in source file /users/wenshuo/desktop/uoft/csc258/lab7/part2/lab6-part2/vga_adapter/vga_adapter.v
     Info (12023): Found entity 1: vga_adapter File: C:/Users/Wenshuo/Desktop/UofT/CSC258/Lab7/part2/lab6-part2/vga_adapter/vga_adapter.v Line: 78
-Info (12021): Found 4 design units, including 4 entities, in source file dinomove.v
-    Info (12023): Found entity 1: dinoProject File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 1
-    Info (12023): Found entity 2: datapath3 File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 124
-    Info (12023): Found entity 3: FSM3 File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 457
-    Info (12023): Found entity 4: LFSR File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 611
 Warning (10236): Verilog HDL Implicit Net warning at DinoMove.v(83): created implicit net for "finish_ground" File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 83
 Info (12127): Elaborating entity "dinoProject" for the top level hierarchy
 Info (12128): Elaborating entity "vga_adapter" for hierarchy "vga_adapter:VGA" File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 62
@@ -1062,80 +1071,79 @@ Info (12128): Elaborating entity "altpll_80u" for hierarchy "vga_adapter:VGA|vga
 Info (12128): Elaborating entity "vga_controller" for hierarchy "vga_adapter:VGA|vga_controller:controller" File: C:/Users/Wenshuo/Desktop/UofT/CSC258/Lab7/part2/lab6-part2/vga_adapter/vga_adapter.v Line: 252
 Info (12128): Elaborating entity "datapath3" for hierarchy "datapath3:d3" File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 94
 Warning (10240): Verilog HDL Always Construct warning at DinoMove.v(186): inferring latch(es) for variable "is_over", which holds its previous value in one or more paths through the always construct File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 186
-Warning (10230): Verilog HDL assignment warning at DinoMove.v(225): truncated value with size 32 to match size of target (7) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 225
-Warning (10230): Verilog HDL assignment warning at DinoMove.v(229): truncated value with size 32 to match size of target (8) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 229
-Warning (10230): Verilog HDL assignment warning at DinoMove.v(264): truncated value with size 32 to match size of target (8) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 264
-Warning (10230): Verilog HDL assignment warning at DinoMove.v(301): truncated value with size 32 to match size of target (1) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 301
-Warning (10230): Verilog HDL assignment warning at DinoMove.v(316): truncated value with size 32 to match size of target (1) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 316
-Warning (10230): Verilog HDL assignment warning at DinoMove.v(368): truncated value with size 10 to match size of target (7) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 368
-Warning (10230): Verilog HDL assignment warning at DinoMove.v(370): truncated value with size 10 to match size of target (7) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 370
-Warning (10230): Verilog HDL assignment warning at DinoMove.v(401): truncated value with size 32 to match size of target (2) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 401
-Warning (10240): Verilog HDL Always Construct warning at DinoMove.v(430): inferring latch(es) for variable "x", which holds its previous value in one or more paths through the always construct File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 430
-Warning (10240): Verilog HDL Always Construct warning at DinoMove.v(430): inferring latch(es) for variable "y", which holds its previous value in one or more paths through the always construct File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 430
-Info (10041): Inferred latch for "y[0]" at DinoMove.v(434) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-Info (10041): Inferred latch for "y[1]" at DinoMove.v(434) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-Info (10041): Inferred latch for "y[2]" at DinoMove.v(434) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-Info (10041): Inferred latch for "y[3]" at DinoMove.v(434) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-Info (10041): Inferred latch for "y[4]" at DinoMove.v(434) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-Info (10041): Inferred latch for "y[5]" at DinoMove.v(434) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-Info (10041): Inferred latch for "y[6]" at DinoMove.v(434) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-Info (10041): Inferred latch for "x[0]" at DinoMove.v(434) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-Info (10041): Inferred latch for "x[1]" at DinoMove.v(434) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-Info (10041): Inferred latch for "x[2]" at DinoMove.v(434) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-Info (10041): Inferred latch for "x[3]" at DinoMove.v(434) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-Info (10041): Inferred latch for "x[4]" at DinoMove.v(434) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-Info (10041): Inferred latch for "x[5]" at DinoMove.v(434) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-Info (10041): Inferred latch for "x[6]" at DinoMove.v(434) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-Info (10041): Inferred latch for "x[7]" at DinoMove.v(434) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
+Warning (10230): Verilog HDL assignment warning at DinoMove.v(230): truncated value with size 32 to match size of target (7) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 230
+Warning (10230): Verilog HDL assignment warning at DinoMove.v(234): truncated value with size 32 to match size of target (8) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 234
+Warning (10230): Verilog HDL assignment warning at DinoMove.v(269): truncated value with size 32 to match size of target (8) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 269
+Warning (10230): Verilog HDL assignment warning at DinoMove.v(306): truncated value with size 32 to match size of target (1) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 306
+Warning (10230): Verilog HDL assignment warning at DinoMove.v(321): truncated value with size 32 to match size of target (1) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 321
+Warning (10230): Verilog HDL assignment warning at DinoMove.v(415): truncated value with size 32 to match size of target (2) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 415
+Warning (10230): Verilog HDL assignment warning at DinoMove.v(436): truncated value with size 32 to match size of target (6) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 436
+Warning (10240): Verilog HDL Always Construct warning at DinoMove.v(444): inferring latch(es) for variable "x", which holds its previous value in one or more paths through the always construct File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 444
+Warning (10240): Verilog HDL Always Construct warning at DinoMove.v(444): inferring latch(es) for variable "y", which holds its previous value in one or more paths through the always construct File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 444
+Info (10041): Inferred latch for "y[0]" at DinoMove.v(448) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+Info (10041): Inferred latch for "y[1]" at DinoMove.v(448) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+Info (10041): Inferred latch for "y[2]" at DinoMove.v(448) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+Info (10041): Inferred latch for "y[3]" at DinoMove.v(448) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+Info (10041): Inferred latch for "y[4]" at DinoMove.v(448) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+Info (10041): Inferred latch for "y[5]" at DinoMove.v(448) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+Info (10041): Inferred latch for "y[6]" at DinoMove.v(448) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+Info (10041): Inferred latch for "x[0]" at DinoMove.v(448) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+Info (10041): Inferred latch for "x[1]" at DinoMove.v(448) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+Info (10041): Inferred latch for "x[2]" at DinoMove.v(448) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+Info (10041): Inferred latch for "x[3]" at DinoMove.v(448) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+Info (10041): Inferred latch for "x[4]" at DinoMove.v(448) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+Info (10041): Inferred latch for "x[5]" at DinoMove.v(448) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+Info (10041): Inferred latch for "x[6]" at DinoMove.v(448) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+Info (10041): Inferred latch for "x[7]" at DinoMove.v(448) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
 Info (10041): Inferred latch for "is_over" at DinoMove.v(192) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 192
 Info (12128): Elaborating entity "LFSR" for hierarchy "datapath3:d3|LFSR:l0" File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 182
-Warning (10036): Verilog HDL or VHDL warning at DinoMove.v(618): object "current_reg" assigned a value but never read File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 618
+Warning (10036): Verilog HDL or VHDL warning at DinoMove.v(718): object "current_reg" assigned a value but never read File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 718
 Info (12128): Elaborating entity "FSM3" for hierarchy "FSM3:fsm3" File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 121
-Warning (10240): Verilog HDL Always Construct warning at DinoMove.v(513): inferring latch(es) for variable "next_state", which holds its previous value in one or more paths through the always construct File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 513
-Warning (10270): Verilog HDL Case Statement warning at DinoMove.v(549): incomplete case statement has no default case item File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 549
-Info (10041): Inferred latch for "next_state[0]" at DinoMove.v(513) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 513
-Info (10041): Inferred latch for "next_state[1]" at DinoMove.v(513) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 513
-Info (10041): Inferred latch for "next_state[2]" at DinoMove.v(513) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 513
-Info (10041): Inferred latch for "next_state[3]" at DinoMove.v(513) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 513
+Warning (10240): Verilog HDL Always Construct warning at DinoMove.v(613): inferring latch(es) for variable "next_state", which holds its previous value in one or more paths through the always construct File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 613
+Warning (10270): Verilog HDL Case Statement warning at DinoMove.v(649): incomplete case statement has no default case item File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 649
+Info (10041): Inferred latch for "next_state[0]" at DinoMove.v(613) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 613
+Info (10041): Inferred latch for "next_state[1]" at DinoMove.v(613) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 613
+Info (10041): Inferred latch for "next_state[2]" at DinoMove.v(613) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 613
+Info (10041): Inferred latch for "next_state[3]" at DinoMove.v(613) File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 613
 Warning (12241): 3 hierarchies have connectivity warnings - see the Connectivity Checks report folder
-Warning (13012): Latch datapath3:d3|x[7] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[2] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 602
-Warning (13012): Latch datapath3:d3|x[5] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[2] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 602
-Warning (13012): Latch datapath3:d3|x[6] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[2] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 602
-Warning (13012): Latch datapath3:d3|y[3] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[2] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 602
-Warning (13012): Latch datapath3:d3|y[4] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[2] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 602
-Warning (13012): Latch datapath3:d3|y[5] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[2] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 602
-Warning (13012): Latch datapath3:d3|y[6] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[2] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 602
-Warning (13012): Latch datapath3:d3|x[0] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[2] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 602
-Warning (13012): Latch datapath3:d3|x[1] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[2] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 602
-Warning (13012): Latch datapath3:d3|x[2] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[2] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 602
-Warning (13012): Latch datapath3:d3|x[3] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[2] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 602
-Warning (13012): Latch datapath3:d3|x[4] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[2] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 602
-Warning (13012): Latch FSM3:fsm3|next_state[0] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 513
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[0] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 602
-Warning (13012): Latch FSM3:fsm3|next_state[1] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 513
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[1] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 602
-Warning (13012): Latch FSM3:fsm3|next_state[2] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 513
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[2] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 602
-Warning (13012): Latch datapath3:d3|y[0] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[2] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 602
-Warning (13012): Latch datapath3:d3|y[1] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[2] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 602
-Warning (13012): Latch datapath3:d3|y[2] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 434
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[2] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 602
+Warning (13012): Latch datapath3:d3|x[7] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal KEY[0] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 20
+Warning (13012): Latch datapath3:d3|x[5] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal KEY[0] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 20
+Warning (13012): Latch datapath3:d3|x[6] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal KEY[0] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 20
+Warning (13012): Latch datapath3:d3|y[4] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[1] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 702
+Warning (13012): Latch datapath3:d3|y[3] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[1] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 702
+Warning (13012): Latch datapath3:d3|y[6] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[1] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 702
+Warning (13012): Latch datapath3:d3|y[5] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[1] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 702
+Warning (13012): Latch datapath3:d3|x[0] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal datapath3:d3|q[1] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 421
+Warning (13012): Latch datapath3:d3|x[1] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[0] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 702
+Warning (13012): Latch datapath3:d3|x[2] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal datapath3:d3|q[1] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 421
+Warning (13012): Latch datapath3:d3|x[3] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal KEY[0] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 20
+Warning (13012): Latch datapath3:d3|x[4] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal KEY[0] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 20
+Warning (13012): Latch FSM3:fsm3|next_state[0] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 613
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[0] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 702
+Warning (13012): Latch FSM3:fsm3|next_state[1] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 613
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[1] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 702
+Warning (13012): Latch FSM3:fsm3|next_state[2] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 613
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[0] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 702
+Warning (13012): Latch datapath3:d3|y[0] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[0] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 702
+Warning (13012): Latch datapath3:d3|y[1] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[0] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 702
+Warning (13012): Latch datapath3:d3|y[2] has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 448
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal FSM3:fsm3|current_state[1] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 702
 Warning (13012): Latch datapath3:d3|is_over has unsafe behavior File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 158
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal datapath3:d3|tree_x[7] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 355
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal datapath3:d3|tree_x[7] File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 360
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "VGA_SYNC_N" is stuck at VCC File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 28
 Info (286030): Timing-Driven Synthesis is running
@@ -1542,17 +1550,17 @@ Warning (21074): Design contains 11 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SW[7]" File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 19
     Warning (15610): No output dependent on input pin "SW[8]" File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 19
     Warning (15610): No output dependent on input pin "SW[9]" File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 19
-Info (21057): Implemented 402 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 484 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 15 input pins
     Info (21059): Implemented 35 output pins
-    Info (21061): Implemented 342 logic cells
+    Info (21061): Implemented 424 logic cells
     Info (21064): Implemented 9 RAM segments
     Info (21065): Implemented 1 PLLs
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 456 warnings
-    Info: Peak virtual memory: 702 megabytes
-    Info: Processing ended: Sun Jul 29 17:08:56 2018
-    Info: Elapsed time: 00:00:11
-    Info: Total CPU time (on all processors): 00:00:20
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 455 warnings
+    Info: Peak virtual memory: 707 megabytes
+    Info: Processing ended: Mon Jul 30 17:22:16 2018
+    Info: Elapsed time: 00:00:10
+    Info: Total CPU time (on all processors): 00:00:21
 
 
 +------------------------------------------+

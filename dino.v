@@ -168,7 +168,7 @@ module datapath3(colour,
 	reg [7:0] erase_counter_x;
 	reg [6:0] erase_counter_y;
 
-	output reg [5:0] q;
+	output reg [3:0] q;
 	reg [1:0] tree_x_counter;
 	reg [6:0] tree_y_counter;
 	reg [3:0]  frame;
@@ -189,16 +189,12 @@ module datapath3(colour,
 			is_over = 1'b0;
 		else
 			begin
-				if(x_original + 3'd6 > tree_x && x_original + 3'd6 < tree_x + 3'd3)
-					begin
-						if(y_original + 3'd7 > tree_y)
-							is_over = 1'd1;
-					end	
-				else if(x_original > tree_x && x_original < tree_x + 3'd3)
-				    begin
-					    if(y_original + 3'd7 > tree_y)
-						    is_over = 1'd1;
-					end
+				if(x_original + 3'd6 >= tree_x && x_original + 3'd6 <= tree_x + 3'd3 && y_original + 3'd7 >= tree_y)
+					is_over = 1'd1;
+				else if(x_original + 3'd6 >= tree_x + 3'd3 && x_original <= tree_x && y_original + 3'd7 >= tree_y)
+				    is_over = 1'd1;
+				else if(x_original >= tree_x && x_original <= tree_x + 3'd3 && y_original + 3'd7 >= tree_y)
+				    is_over = 1'd1;
 			end
 	end
 	
@@ -294,9 +290,9 @@ module datapath3(colour,
 	always @(posedge clock)
 	begin: delay_counter
 		if (!resetn || set_over)
-			delay <= 20'd633333;
+			delay <= 20'd833333;
 		if (delay == 0)
-			delay <= 20'd633333;
+			delay <= 20'd833333;
 	    else if (en_delay)
 		begin
 			    delay <= delay - 1'b1;
@@ -384,8 +380,6 @@ module datapath3(colour,
 		end
 	end
 	
-	
-	
 	always @(posedge clock)
 	begin
 		if(!resetn || set_over)
@@ -427,13 +421,13 @@ module datapath3(colour,
 		if(finish_delay) begin
 			q <= 4'b0000;
 			end
-		if (q == 6'd21) begin
+		if (q == 4'b1111) begin
 			q <= 0;
 			finish_draw <= 1'b1;
 			end
 		else if (draw)
 			begin
-				q <= q + 1;
+				q <= q + 1'b1;
 				finish_draw <= 1'b0;
 			end
 	end
@@ -450,101 +444,15 @@ module datapath3(colour,
 			    x = ground_x;
 				y = ground_y;
 			end
+		else if(draw)
+			begin
+				x = x_original + q[1:0];
+				y = y_original + q[3:2];
+			end
 		else if(draw_tree)
 			begin
 				x = tree_x + tree_x_counter;
 				y = tree_y + tree_y_counter;
-			end
-		else if(draw)
-			begin
-				if(q == 6'd0) begin
-					x = x_original + 2'd3;
-					y = y_original;
-				end	
-				else if (q == 6'd1) begin
-					x = x_original + 3'd4;
-					y = y_original;
-				end
-				else if(q == 6'd2) begin
-					x = x_original + 3'd5;
-					y = y_original;
-				end
-				else if(q == 6'd3) begin
-					x = x_original + 2'd3;
-					y = y_original + 1'b1;
-				end	
-				else if(q == 6'd4) begin
-					x = x_original + 3'd5;
-					y = y_original + 1'd1;
-				end
-				else if(q == 6'd5) begin
-					x = x_original + 2'd3;
-					y = y_original + 2'd2;
-				end	
-				else if(q == 6'd6) begin
-					x = x_original + 3'd4;
-					y = y_original + 2'd2;
-				end	
-				else if(q == 6'd7) begin
-					x = x_original + 3'd5;
-					y = y_original + 2'd2;
-				end
-				else if(q == 6'd8) begin
-					x = x_original;
-					y = y_original + 3'd3;
-				end
-				else if(q == 6'd9) begin
-					x = x_original + 1'd1;
-					y = y_original + 3'd3;
-				end
-				else if(q == 6'd10) begin
-					x = x_original + 2'd2;
-					y = y_original + 3'd3;
-				end
-				else if(q == 6'd11) begin
-					x = x_original + 2'd3;
-					y = y_original + 3'd3;
-				end
-				else if(q == 6'd12) begin
-					x = x_original;
-					y = y_original + 3'd4;
-				end
-				else if(q == 6'd13) begin
-					x = x_original + 1'd1;
-					y = y_original + 3'd4;
-				end
-				else if(q == 6'd14) begin
-					x = x_original + 2'd2;
-					y = y_original + 3'd4;
-				end
-				else if(q == 6'd15) begin
-					x = x_original + 2'd3;
-					y = y_original + 3'd4;
-				end	
-				else if(q == 6'd16) begin
-					x = x_original;
-					y = y_original + 3'd5;
-				end
-				else if(q == 6'd17) begin
-					x = x_original + 1'd1;
-					y = y_original + 3'd5;
-				end
-				else if(q == 6'd18) begin
-					x = x_original + 2'd2;
-					y = y_original + 3'd5;
-				end
-				else if(q == 6'd19) begin
-					x = x_original + 3'd3;
-					y = y_original + 3'd5;
-				end
-				else if(q == 6'd20) begin
-					x = x_original;
-					y = y_original + 3'd6;
-				end	
-				else if(q == 6'd21) begin
-					x = x_original + 3'd3;
-					y = y_original + 3'd6;
-				end
 			end
 		else if(en_erase)
 			begin

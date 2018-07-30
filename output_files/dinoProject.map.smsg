@@ -1,2 +1,2 @@
-Info (10281): Verilog HDL Declaration information at DinoMove.v(486): object "draw" differs only in case from object "DRAW" in the same scope File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 486
-Info (10281): Verilog HDL Declaration information at DinoMove.v(486): object "draw_tree" differs only in case from object "DRAW_TREE" in the same scope File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 486
+Info (10281): Verilog HDL Declaration information at DinoMove.v(586): object "draw" differs only in case from object "DRAW" in the same scope File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 586
+Info (10281): Verilog HDL Declaration information at DinoMove.v(586): object "draw_tree" differs only in case from object "DRAW_TREE" in the same scope File: C:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject/DinoMove.v Line: 586
