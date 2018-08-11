@@ -39,8 +39,8 @@ module dinoProject
 	wire [6:0] y;
 	wire writeEn;
 	wire ld_x, ld_y, draw, draw_ground;
-	wire en_xy, en_delay, finish_draw, finish_erase, right, down, is_move, finish_tree_draw, en_erase, en_xy_tree, draw_tree, finish_delay, is_over, set_over;
-	wire finish_bird, draw_bird, en_bird;
+	wire en_xy, en_delay, finish_draw, finish_erase, finish_death, right, down, is_move, finish_tree_draw, en_erase, en_xy_tree, draw_tree, finish_delay, is_over, set_over;
+	wire finish_bird, draw_bird, en_bird, draw_death;
 
 	// Create an Instance of a VGA controller - there can be only one!
 	// Define the number of colours as well as the initial background
@@ -94,7 +94,9 @@ module dinoProject
 				 .set_over(set_over),
 				 .finish_bird(finish_bird),
 				 .draw_bird(draw_bird),
-				 .en_bird(en_bird)
+				 .en_bird(en_bird),
+				 .draw_death(draw_death),
+				 .finish_death(finish_death)
 	             );
 	 FSM3 fsm3(
 		       .clock(CLOCK_50),
@@ -124,7 +126,9 @@ module dinoProject
 			   .set_over(set_over),
 			   .finish_bird(finish_bird),
 			   .draw_bird(draw_bird),
-			   .en_bird(en_bird)
+			   .en_bird(en_bird),
+			   .draw_death(draw_death),
+			   .finish_death(finish_death)
 		       );
 endmodule
 
@@ -135,6 +139,7 @@ module datapath3(colour,
 				draw_ground, 
 				draw_tree,
 				draw_bird,
+				draw_death,
 				en_xy, 
 				en_xy_tree,
 				en_erase,
@@ -151,13 +156,14 @@ module datapath3(colour,
 				finish_erase, 
 				finish_tree_draw,
 				finish_bird,
+				finish_death,
 				is_move, 
 				q,
 				finish_delay,
 				is_over);
 				
     input resetn, clock;
-	input en_xy, en_delay, en_erase, draw, right, down, is_move, draw_ground, en_xy_tree, draw_tree, set_over, draw_bird, en_bird;
+	input en_xy, en_delay, en_erase, draw, right, down, is_move, draw_ground, en_xy_tree, draw_tree, set_over, draw_bird, en_bird, draw_death;
 	input [2:0] colour;
 	
 	output reg finish_erase;
@@ -165,6 +171,7 @@ module datapath3(colour,
 	output reg finish_draw;
 	output reg finish_tree_draw;
 	output reg finish_bird;
+	output reg finish_death;
 	output finish_delay;
 	output reg is_over;
 	reg [7:0] ground_x;
@@ -180,7 +187,8 @@ module datapath3(colour,
 	reg [6:0] erase_counter_y;
 	reg [7:0] bird_x;
 	reg [6:0] bird_y;
-	reg [1:0] bird_q; 
+	reg [4:0] bird_q; 
+	reg [4:0] death_q;
 	reg direction;
 	
 
@@ -210,20 +218,25 @@ module datapath3(colour,
 						if(y_original + 3'd7 > tree_y)
 							is_over = 1'd1;
 					end	
-				else if(x_original > tree_x && x_original < tree_x + 3'd3)
+				if(x_original > tree_x && x_original < tree_x + 3'd3)
 				    begin
 					    if(y_original + 3'd7 > tree_y)
 						    is_over = 1'd1;
 					end
-				if(x_original + 3'd6 > bird_x && x_original + 3'd6 < bird_x + 3'd3)
+				if(x_original < bird_x && x_original + 3'd6 > bird_x)
 					begin
-						if(y_original + 3'd7 > bird_y && y_original < bird_y)
+						if(y_original >= bird_y - 3'd7 && y_original <= bird_y + 3'd3)
 							is_over = 1'd1;
-					end	
-				else if(x_original > bird_x && x_original < bird_x + 3'd3)
-				    begin
-					    if(y_original + 3'd7 > bird_y && y_original < bird_y)
-						    is_over = 1'd1;
+					end
+				if(x_original > bird_x && x_original + 3'd6 < bird_x + 3'd7)
+					begin
+						if(y_original >= bird_y - 3'd7 && y_original <= bird_y + 3'd3)
+							is_over = 1'd1;
+					end
+				if(x_original > bird_x && x_original + 3'd6 > bird_x + 3'd7)
+					begin
+						if(y_original >= bird_y - 3'd7 && y_original <= bird_y + 3'd3)
+							is_over = 1'd1;
 					end
 			end
 	end
@@ -300,7 +313,7 @@ module datapath3(colour,
 	end
 	
 	always @(posedge clock)
-	begin: load_register
+	begin
 		if (!resetn || set_over) begin
 			colour_out <= 3'b000;
 			end
@@ -308,13 +321,15 @@ module datapath3(colour,
 			begin
 			    if(draw_ground)
 				    colour_out <= 3'b010;
-			    else if (draw)
+			    if (draw)
 				    colour_out <= 3'b001;
-				else if (draw_tree)
+				if (draw_tree)
 					colour_out <= 3'b111;
-				else if(draw_bird)
+				if(draw_bird)
 					colour_out <= 3'b101;
-				else if (en_erase)
+			    if (draw_death)
+				    colour_out <= 3'b001;
+				if (en_erase)
 					colour_out <= 3'b000;
 			end
 	end
@@ -387,7 +402,7 @@ module datapath3(colour,
 	always @(posedge clock)
 	begin
 		if(!resetn || set_over)
-			bird_x <= 8'd70;
+			bird_x <= 8'd30;
 		else if(en_bird)
 			bird_x <= bird_x - 1'd1;
 	end
@@ -432,14 +447,14 @@ module datapath3(colour,
 	begin
 		if(!resetn)
 			begin
-				bird_q <= 2'd0;
+				bird_q <= 5'd0;
 				finish_bird <= 1'd0;
 			end
 		if(finish_delay)
-			bird_q <= 2'd0;
-		if(bird_q == 2'd3)
+			bird_q <= 5'd0;
+		if(bird_q == 5'd17)
 			begin
-				bird_q <= 2'd0;
+				bird_q <= 5'd0;
 				finish_bird <= 1'd1;
 			end	
 		else if(draw_bird)
@@ -449,7 +464,27 @@ module datapath3(colour,
 			end	
 	end
 			
-			
+	
+	always @(posedge clock)
+	begin
+		if(!resetn)
+			begin
+				death_q <= 5'd0;
+				finish_death <= 1'd0;
+			end
+		if(finish_delay)
+			death_q <= 5'd0;
+		if(death_q == 5'd10)
+			begin
+				death_q <= 5'd0;
+				finish_death <= 1'd1;
+			end	
+		else if(draw_death)	
+			begin
+				death_q <= death_q + 1'd1;
+				finish_death <= 1'd0;
+			end
+	end
 	
 	//tree x counter
 	always @(posedge clock)
@@ -642,22 +677,124 @@ module datapath3(colour,
 				end
 			end
 		else if(draw_bird) begin
-			if(bird_q == 2'd0) begin
+			if(bird_q == 5'd0) begin
 				x = bird_x;
-				y = bird_y;
+				y = bird_y + 2'd2;
 				end
-			else if(bird_q == 2'd1) begin
+			else if(bird_q == 5'd1) begin
 				x = bird_x + 1'd1;
 				y = bird_y;
 				end
-			else if(bird_q == 2'd2) begin
+			else if(bird_q == 5'd2) begin
+				x = bird_x + 1'd1;
+				y = bird_y + 2'd1;
+				end
+			else if(bird_q == 5'd3) begin
+				x = bird_x + 1'd1;
+				y = bird_y + 2'd2;
+				end
+			else if(bird_q == 5'd4) begin
 				x = bird_x + 2'd2;
 				y = bird_y;
 				end
-			else if(bird_q == 2'd3) begin
+			else if(bird_q == 5'd5) begin
+				x = bird_x + 2'd2;
+				y = bird_y + 2'd2;
+				end	
+			else if(bird_q == 5'd6) begin
 				x = bird_x + 2'd3;
 				y = bird_y;
+				end	
+			else if(bird_q == 5'd7) begin
+				x = bird_x + 2'd3;
+				y = bird_y + 1'd1;
+				end	
+			else if(bird_q == 5'd8) begin
+				x = bird_x + 2'd3;
+				y = bird_y + 2'd2;
+				end	
+			else if(bird_q == 5'd9) begin
+				x = bird_x + 3'd4;
+				y = bird_y - 1'd1;
 				end
+			else if(bird_q == 5'd10) begin
+				x = bird_x + 3'd4;
+				y = bird_y;
+				end
+			else if(bird_q == 5'd11) begin
+				x = bird_x + 3'd4;
+				y = bird_y + 1'd1;
+				end	
+			else if(bird_q == 5'd12) begin
+				x = bird_x + 3'd4;
+				y = bird_y + 2'd2;
+				end	
+			else if(bird_q == 5'd13) begin
+				x = bird_x + 3'd5;
+				y = bird_y;
+				end
+			else if(bird_q == 5'd14) begin
+				x = bird_x + 3'd5;
+				y = bird_y + 1'd1;
+				end
+			else if(bird_q == 5'd15) begin
+				x = bird_x + 3'd5;
+				y = bird_y + 2'd2;
+				end
+			else if(bird_q == 5'd16) begin
+				x = bird_x + 3'd6;
+				y = bird_y;
+				end
+			else if(bird_q == 5'd17) begin
+				x = bird_x + 3'd6;
+				y = bird_y + 2'd2;
+				end	
+			end
+		else if(draw_death) begin
+			if(death_q == 5'd0) begin
+				x = x_original;
+				y = y_original + 2'd2;
+			end
+			else if(death_q == 5'd1) begin
+				x = x_original + 1'd1;
+				y = y_original + 2'd2;
+			end
+			else if(death_q == 5'd2) begin
+				x = x_original + 2'd2;
+				y = y_original + 2'd2;
+			end
+			else if(death_q == 5'd3) begin
+				x = x_original + 2'd2;
+				y = y_original + 1'd1;
+			end
+			else if(death_q == 5'd4) begin
+				x = x_original + 2'd2;
+				y = y_original;
+			end
+			else if(death_q == 5'd5) begin
+				x = x_original + 2'd2;
+				y = y_original + 2'd3;
+			end
+			else if(death_q == 5'd6) begin
+				x = x_original + 2'd2;
+				y = y_original + 3'd4;
+			end
+			else if(death_q == 5'd7) begin
+				x = x_original + 2'd2;
+				y = y_original + 3'd5;
+			end
+			else if(death_q == 5'd8) begin
+				x = x_original + 2'd2;
+				y = y_original + 3'd6;
+			end
+			else if(death_q == 6'd9) begin
+				x = x_original + 2'd3;
+				y = y_original + 2'd2;
+			end
+			else if(death_q == 6'd10) begin
+				x = x_original + 3'd4;
+				y = y_original + 2'd2;
+			end
 			end
 		else if(en_erase)
 			begin
@@ -676,6 +813,7 @@ module FSM3(clock,
 			finish_erase, 
 			finish_tree_draw,
 			finish_bird,
+			finish_death,
 			x, 
 			y, 
 			en_xy,
@@ -688,6 +826,7 @@ module FSM3(clock,
 			draw_tree,
 			draw_bird,
 			draw, 
+			draw_death,
 			plot, 
 			is_move, 
 			current_state,
@@ -696,10 +835,10 @@ module FSM3(clock,
 			is_over,
 			set_over);
 			
-	input resetn, clock, go, finish_ground, finish_draw, finish_erase, finish_tree_draw, jump, finish_bird, finish_delay, is_over;
+	input resetn, clock, go, finish_ground, finish_draw, finish_erase, finish_tree_draw, finish_death, jump, finish_bird, finish_delay, is_over;
 	input [7:0] x;
 	input [6:0] y;
-	output reg en_xy, en_xy_tree, en_erase, en_delay, draw_ground, draw, plot, down, right, is_move, draw_tree, set_over, draw_bird, en_bird;
+	output reg en_xy, en_xy_tree, en_erase, en_delay, draw_ground, draw, draw_death, plot, down, right, is_move, draw_tree, set_over, draw_bird, en_bird;
 
 	output reg [3:0] current_state;
 	reg [3:0] next_state;
@@ -709,11 +848,12 @@ module FSM3(clock,
 				DRAW = 4'd2,
 				DRAW_TREE = 4'd3,
 				DRAW_BIRD = 4'd4,
-				DELAY = 4'd5,
-				ERASE= 4'd6,
-				NEW_XY = 4'd7,
-				NEW_XY_TREE = 4'd8,
-				NEW_XY_BIRD = 4'd9;
+				DRAW_DEATH = 4'd5,
+				DELAY = 4'd6,
+				ERASE= 4'd7,
+				NEW_XY = 4'd8,
+				NEW_XY_TREE = 4'd9,
+				NEW_XY_BIRD = 4'd10;
 					
 
 	
@@ -731,17 +871,32 @@ module FSM3(clock,
 	begin: state_table
 		case (current_state)
 			BEGIN: next_state = go ? GROUND : BEGIN;
-			GROUND : next_state = finish_ground ? DRAW : GROUND;
+			GROUND : begin
+						if(finish_ground) //next_state = finish_ground ? DRAW : GROUND;
+							begin
+								if(is_over)
+									next_state = DRAW_DEATH;
+								else
+									next_state = DRAW;
+							end
+					end
 			DRAW: next_state = finish_draw ? DRAW_BIRD : DRAW;
 			DRAW_BIRD : next_state = finish_bird ? DRAW_TREE: DRAW_BIRD;
 			DRAW_TREE : next_state = finish_tree_draw ? DELAY : DRAW_TREE;
-			DELAY : next_state = finish_delay ? ERASE : DELAY;
-			ERASE: begin
-						if(finish_erase)
+			DRAW_DEATH : next_state = finish_death ? DRAW_BIRD : DRAW_DEATH;
+			DELAY : begin//next_state = finish_delay ? ERASE : DELAY;
+						if(finish_delay)
 							begin
 								if(is_over)
 									next_state = BEGIN;
-								else if(is_move)
+								else
+									next_state = ERASE;
+							end	
+					end
+			ERASE: begin
+						if(finish_erase)
+							begin
+								if(is_move)
 									next_state = NEW_XY;
 								else
 									next_state = NEW_XY_TREE;
@@ -767,6 +922,7 @@ module FSM3(clock,
 		en_erase = 1'b0;
 		set_over = 1'b0;
 		en_bird = 1'b0;
+		draw_death = 1'b0;
 		
 		case (current_state)
 		BEGIN: begin
@@ -791,6 +947,10 @@ module FSM3(clock,
 		DELAY: begin
 			en_delay = 1'b1;
 			end	
+		DRAW_DEATH: begin
+			draw_death = 1'b1;
+			plot = 1'b1;
+			end
 		ERASE: begin
 			en_erase = 1'b1;
 			plot = 1'b1;

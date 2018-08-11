@@ -9,21 +9,21 @@ z2
 cModel Technology
 Z0 dC:/Users/Wenshuo/Desktop/UofT/CSC258/DinoProject
 vdatapath3
-Z1 !s110 1532738551
+Z1 !s110 1533934852
 !i10b 1
-!s100 6J:HZmKGoEX;Tdo?:b1M70
-I^JOmo0=C7K=Zbl=e`?bk;0
+!s100 7Pf2RO]OnnadnL?OaFICY3
+IzNEX3Vdzb5H8mfXB[O5dX0
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 R0
-Z3 w1532738542
+Z3 w1533934848
 Z4 8DinoMove.v
 Z5 FDinoMove.v
-L0 197
+L0 216
 Z6 OP;L;10.4a;61
 r1
 !s85 0
 31
-Z7 !s108 1532738551.000000
+Z7 !s108 1533934852.000000
 Z8 !s107 DinoMove.v|
 Z9 !s90 -reportprogress|300|-timescale|1ns/1ns|DinoMove.v|
 !s101 -O0
@@ -32,8 +32,8 @@ Z10 o-timescale 1ns/1ns -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L inf
 vdinoProject
 R1
 !i10b 1
-!s100 o<;O1iH;YgkTm7S1P86Wj0
-I?:m6P3POoGmIdCbQAU<a53
+!s100 mJ<?aY=NnGXE_8P2@>i8Q3
+I4Ym7AV1@ll2BnQQham^140
 R2
 R0
 R3
@@ -52,37 +52,37 @@ R9
 R10
 ndino@project
 vfpga_top
-Z11 !s110 1532310518
+!s110 1532310518
 !i10b 1
 !s100 OJ3zFO=MAClbDG=`FcJ@=3
 IGi?SjHlD[B:HLTeM<_GL52
 R2
 R0
-Z12 w1532310209
-Z13 8LFSR.v
-Z14 FLFSR.v
+w1532310209
+8LFSR.v
+FLFSR.v
 L0 1
 R6
 r1
 !s85 0
 31
-Z15 !s108 1532310518.000000
-Z16 !s107 LFSR.v|
-Z17 !s90 -reportprogress|300|-timescale|1ns/1ns|LFSR.v|
+!s108 1532310518.000000
+!s107 LFSR.v|
+!s90 -reportprogress|300|-timescale|1ns/1ns|LFSR.v|
 !s101 -O0
 !i113 1
 R10
 vFSM3
 R1
 !i10b 1
-!s100 RdUe]zF8kNeM9RL8E5mPg0
-I2V49ZYl[>``4?Ybi9h@Yz3
+!s100 k597_Xfb6NK:_gAASC?>_0
+I9c>GDPJTcnZV2KOR1_eOO2
 R2
 R0
 R3
 R4
 R5
-L0 474
+L0 887
 R6
 r1
 !s85 0
@@ -95,44 +95,44 @@ R9
 R10
 n@f@s@m3
 vhex_decoder
-R11
+!s110 1533934376
 !i10b 1
-!s100 j0LBeLI0HWnA9[8d6TkU<1
-IalP7WhHb]ncNV?8?i8`Mm1
+!s100 loMWmW@>GOLJiUodA:>630
+IJk=i]l;0ZOLF3ba;g5FfK3
 R2
 R0
-R12
-R13
-R14
-L0 38
+w1533934372
+R4
+R5
+L0 1122
 R6
 r1
 !s85 0
 31
-R15
-R16
-R17
+!s108 1533934376.000000
+R8
+R9
 !s101 -O0
 !i113 1
 R10
 vLFSR
-R11
+R1
 !i10b 1
-!s100 [8ejAMmYILbFdmcc`c2X;0
-I<HC3M;ognaV;i=_^3SO5k1
+!s100 C0[1`AXk=R1o7l;0?`e:70
+I95ABncm7Bdlh]a;Fk2NM;0
 R2
 R0
-R12
-R13
-R14
-L0 13
+R3
+R4
+R5
+L0 1080
 R6
 r1
 !s85 0
 31
-R15
-R16
-R17
+R7
+R8
+R9
 !s101 -O0
 !i113 1
 R10
@@ -140,14 +140,14 @@ n@l@f@s@r
 vtest
 R1
 !i10b 1
-!s100 @ZNSanDcjiFG5e`aQh1c13
-I]m[=8a?5_RhclL]5HUmID1
+!s100 5lE_=jQl^6GPa3>Z<@z@^1
+I0lW<=XAI3PQT9aLWgR?7@1
 R2
 R0
 R3
 R4
 R5
-L0 122
+L0 134
 R6
 r1
 !s85 0
